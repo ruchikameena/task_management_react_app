@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Register from './components/Register';
+import Login from './components/Login';
+import Dashboard from './pages/Dashboard';
+import Profile from './pages/Profile';
+import Tasks from './pages/Tasks';
+import Board from './pages/Board';
+import Home from './pages/Home';
+import Work from './pages/Work';
+import { useAuth } from './context/authContext';
 
-function App() {
+const App = () => {
+  const { user } = useAuth();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={user ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+      {
+        user && (
+          <Route path='/dashboard' element={<Dashboard />}>
+            <Route index element={<Home />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="tasks" element={<Tasks />} />
+            <Route path="board" element={<Board />} />
+            <Route path="work" element={<Work />} />
+          </Route>
+        )
+      }
+    </Routes>
   );
-}
+};
 
 export default App;
