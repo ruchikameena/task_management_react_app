@@ -8,6 +8,7 @@ import Board from './pages/Board';
 import Home from './pages/Home';
 import Work from './pages/Work';
 import { useAuth } from './context/authContext';
+import NotFound from './pages/NotFound';
 
 const App = () => {
   const { user } = useAuth();
@@ -28,6 +29,7 @@ const App = () => {
           </Route>
         )
       }
+      <Route path='*' element={<NotFound />} />
     </Routes>
   );
 };
