@@ -1,0 +1,16 @@
+.dashboard_main_content{
+    height: 100vh;
+}
+
+.dashboard_main{
+    display: flex;
+}
+
+@media screen and (max-width:900px){
+    .dashboard_main{
+        flex-direction: column;
+    }
+    .dashboard_main_content{
+        height: 60vh;
+    }
+}

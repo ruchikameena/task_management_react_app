@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './Board.css';
 import EditTaskModal from '../components/EditTask';
 import { db } from '../firebase/config';
 import {
@@ -12,11 +13,6 @@ import {
 import { useAuth } from '../context/authContext';
 import CreateTaskPopup from '../components/CreateTaskPopup';
 import TaskCard from '../components/TaskCard';
-import {
-  DragDropContext,
-  Droppable,
-  Draggable,
-} from '@hello-pangea/dnd';
 
 const Board = () => {
   const { user } = useAuth();
@@ -73,24 +69,6 @@ const Board = () => {
 
   const columns = getColumnTasks();
 
-  const onDragEnd = async (result) => {
-    const { source, destination, draggableId } = result;
-
-    if (!destination || source.droppableId === destination.droppableId) return;
-
-    const newStatus = {
-      todo: 'not-started',
-      ongoing: 'in-progress',
-      completed: 'completed',
-      pending: 'pending',
-    }[destination.droppableId];
-
-    const taskRef = doc(db, 'tasks', draggableId);
-    await updateDoc(taskRef, {
-      status: newStatus,
-    });
-  };
-
   const columnOrder = ['todo', 'ongoing', 'completed', 'pending'];
   const columnNames = {
     todo: '📝 To Do',
@@ -100,69 +78,33 @@ const Board = () => {
   };
 
   return (
-    <div style={{ padding: '1rem' }}>
-      <div style={{ textAlign: 'right', marginBottom: '1rem' }}>
+    <div className='board_main'>
+      <div className='board_main_task'>
         <button
           onClick={() => setShowPopup(true)}
-          style={{
-            padding: '0.5rem 1rem',
-            background: '#1976d2',
-            color: 'white',
-            border: 'none',
-            borderRadius: '5px',
-          }}
+          className='board_main_task_btn'
         >
           ➕ Create Task
         </button>
       </div>
 
-      <DragDropContext onDragEnd={onDragEnd}>
-        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-          {columnOrder.map((colKey) => (
-            <Droppable droppableId={colKey} key={colKey}>
-              {(provided) => (
-                <div
-                  ref={provided.innerRef}
-                  {...provided.droppableProps}
-                  style={{
-                    flex: 1,
-                    background: '#f1f1f1',
-                    padding: '1rem',
-                    borderRadius: '8px',
-                    minHeight: '300px',
-                    maxWidth: '23%',
-                  }}
-                >
-                  <h3>{columnNames[colKey]}</h3>
-                  {columns[colKey].length === 0 ? (
-                    <p>No tasks</p>
-                  ) : (
-                    columns[colKey].map((task, index) => (
-                      <Draggable
-                        key={task.id}
-                        draggableId={task.id}
-                        index={index}
-                      >
-                        {(provided) => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                          >
-                            <TaskCard task={task} onEdit={setEditTask} />
-
-                          </div>
-                        )}
-                      </Draggable>
-                    ))
-                  )}
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-          ))}
-        </div>
-      </DragDropContext>
+      <div className='boarder_main_holder'>
+        {columnOrder.map((colKey) => (
+          <div
+            key={colKey}
+            className='board_main_clm'
+          >
+            <h3 style={{marginBottom:'2px'}}>{columnNames[colKey]}</h3>
+            {columns[colKey].length === 0 ? (
+              <p>No tasks</p>
+            ) : (
+              columns[colKey].map((task) => (
+                <TaskCard key={task.id} task={task} onEdit={setEditTask} />
+              ))
+            )}
+          </div>
+        ))}
+      </div>
 
       {showPopup && (
         <CreateTaskPopup
@@ -170,13 +112,13 @@ const Board = () => {
           onTaskCreated={() => {}}
         />
       )}
-      {editTask && (
-  <EditTaskModal
-    task={editTask}
-    onClose={() => setEditTask(null)}
-  />
-)}
 
+      {editTask && (
+        <EditTaskModal
+          task={editTask}
+          onClose={() => setEditTask(null)}
+        />
+      )}
     </div>
   );
 };

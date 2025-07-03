@@ -82,7 +82,7 @@ const Register = () => {
         <div className="auth_content">
           <h1>Welcome to Kanban</h1>
           <p style={{wordSpacing:'5px',fontSize:'12px',letterSpacing:'3px'}}>An Task Management Application</p>
-        <p style={{marginBottom:'5px',color:'#1976d2'}}>Visualize . Assign . Accomplish</p>
+        <p style={{marginBottom:'5px',color:'#02c37e'}}>Visualize . Assign . Accomplish</p>
         <h4 style={{marginBottom:'20px'}}>A Smarter Way to Manage Your Workflow</h4>
         </div>
         <Lottie animationData={Authentication} loop={true} className='animation_auth' />
