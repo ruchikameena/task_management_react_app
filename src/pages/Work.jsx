@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth } from '../context/authContext';
 import { db } from '../firebase/config';
 import { collection, query, where, getDocs, doc, getDoc } from 'firebase/firestore';
@@ -6,13 +6,12 @@ import RejectTaskModal from '../components/RejectTask';
 import './Work.css';
 import Lottie from 'lottie-react';
 import NO_TASK from '../assets/no_task.json';
+
 const Work = () => {
   const { user } = useAuth();
   const [submittedTasks, setSubmittedTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedRejectTask, setSelectedRejectTask] = useState(null);
-
-  // New states for filter and sort
   const [filterDate, setFilterDate] = useState('');
   const [sortOption, setSortOption] = useState('fastest');
 
@@ -24,10 +23,10 @@ const Work = () => {
         where('status', '==', 'completed')
       );
 
-      const querySnapshot = await getDocs(q);
+      const data = await getDocs(q);
 
       const tasksWithUserNames = await Promise.all(
-        querySnapshot.docs.map(async (docSnap) => {
+        data.docs.map(async (docSnap) => {
           const taskData = { id: docSnap.id, ...docSnap.data() };
 
           let assignedToName = 'Unknown';
@@ -58,7 +57,7 @@ const Work = () => {
     if (user) fetchSubmittedTasks();
   }, [user]);
 
-  // FILTERING by submission date
+  //Filter tasks based on the selected submission date
   const filteredTasks = filterDate
     ? submittedTasks.filter(task => {
         const subDate = new Date(task.submittedAt?.seconds * 1000);
@@ -71,13 +70,12 @@ const Work = () => {
       })
     : submittedTasks;
 
-  // SORTING by submission speed
+  //Sort tasks based on the rate of submission
   const sortedTasks = [...filteredTasks].sort((a, b) => {
     const aSubmitted = a.submittedAt?.seconds ?? 0;
     const bSubmitted = b.submittedAt?.seconds ?? 0;
     const aDue = a.dueDate?.seconds ?? 0;
     const bDue = b.dueDate?.seconds ?? 0;
-
     const aDuration = aSubmitted - aDue;
     const bDuration = bSubmitted - bDue;
 
@@ -87,16 +85,9 @@ const Work = () => {
   return (
     <div className='work_main'>
       <h2 style={{marginBottom:'10px'}}>📄 Work Submitted To Me</h2>
-
-      {/* 🔍 Filter and Sort Controls */}
       <div style={{ marginBottom: '20px' }}>
         <label><strong>Filter by Date:</strong>{' '}</label>
-        <input
-          type="date"
-          className='work_filter'
-          value={filterDate}
-          onChange={(e) => setFilterDate(e.target.value)}
-        />
+        <input type="date" className='work_filter' value={filterDate} onChange={(e) => setFilterDate(e.target.value)}/>
         <br className='line_breaker'/>
         <label><strong>Sort by:</strong>{' '}</label>
         <select value={sortOption} onChange={(e) => setSortOption(e.target.value)} className='work_sort'>
@@ -115,16 +106,7 @@ const Work = () => {
       ) : (
         <ul style={{ listStyle: 'none', padding: 0 }}>
           {sortedTasks.map((task) => (
-            <li
-              key={task.id}
-              style={{
-                marginBottom: '1rem',
-                padding: '1rem',
-                border: '1px solid #ccc',
-                borderRadius: '8px',
-                backgroundColor: '#f9f9f9'
-              }}
-            >
+            <li key={task.id} style={{ marginBottom: '10px',padding: '10px',border: '1px solid #ccc',borderRadius: '8px',backgroundColor: '#f9f9f9'}}>
               <p style={{marginBottom:'10px'}}><strong>Task:</strong> {task.title}</p>
               <p><strong>Submitted By:</strong> {task.assignedToName}</p>
               <p>
@@ -138,22 +120,12 @@ const Work = () => {
                   {new Date(task.submittedAt.seconds * 1000).toLocaleString()}
                 </p>
               )}
-              <button
-                style={{
-                  marginTop: '10px',
-                  background: 'rgb(0, 0, 0,0.8)',
-                  color: 'white',
-                  border: 'none',
-                  padding: '0.4rem 0.8rem',
-                  borderRadius: '5px',
-                  cursor: 'pointer'
-                }}
-                onClick={() => setSelectedRejectTask(task)}
-              >
-                Reject & Reassign
-              </button>
+              <button style={{marginTop: '10px',background: 'rgb(0, 0, 0,0.8)',color: 'white',border: 'none',padding: '10px 20px',borderRadius: '5px',cursor: 'pointer'}} onClick={() => setSelectedRejectTask(task)}>Reject & Reassign</button>
+
             </li>
+
           ))}
+          
         </ul>
       )}
 

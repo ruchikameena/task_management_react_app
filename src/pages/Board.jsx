@@ -1,15 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './Board.css';
 import EditTaskModal from '../components/EditTask';
 import { db } from '../firebase/config';
-import {
-  collection,
-  query,
-  where,
-  onSnapshot,
-  doc,
-  updateDoc,
-} from 'firebase/firestore';
+import {collection,query,where,onSnapshot,} from 'firebase/firestore';
 import { useAuth } from '../context/authContext';
 import CreateTaskPopup from '../components/CreateTaskPopup';
 import TaskCard from '../components/TaskCard';
@@ -79,21 +72,15 @@ const Board = () => {
 
   return (
     <div className='board_main'>
+
       <div className='board_main_task'>
-        <button
-          onClick={() => setShowPopup(true)}
-          className='board_main_task_btn'
-        >
-          ➕ Create Task
-        </button>
+        <button onClick={() => setShowPopup(true)} className='board_main_task_btn'>➕ Create Task</button>
       </div>
 
       <div className='boarder_main_holder'>
         {columnOrder.map((colKey) => (
-          <div
-            key={colKey}
-            className='board_main_clm'
-          >
+          <div key={colKey} className='board_main_clm'>
+
             <h3 style={{marginBottom:'2px'}}>{columnNames[colKey]}</h3>
             {columns[colKey].length === 0 ? (
               <p style={{marginTop:'10px'}}>No tasks</p>
@@ -102,6 +89,7 @@ const Board = () => {
                 <TaskCard key={task.id} task={task} onEdit={setEditTask} />
               ))
             )}
+            
           </div>
         ))}
       </div>

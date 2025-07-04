@@ -18,6 +18,7 @@ const Sidebar = () => {
           <li className='sidebar_main_li'><NavLink className='sidebar_main_navlink' to="/dashboard/work">Work</NavLink></li>
         </ul>
       </div>
+      
       <div className='menu_toggle_button' onClick={()=>setShowMenu(!showMenu)}>☰</div>
       {showMenu && (
         <ul className="menu_dropdown">

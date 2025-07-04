@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth } from '../context/authContext';
 import { db } from '../firebase/config';
 import { collection, query, where, getDocs, doc, getDoc } from 'firebase/firestore';
@@ -6,6 +6,7 @@ import Lottie from 'lottie-react';
 import TaskDetailModel from '../components/TaskDetail';
 import './Tasks.css';
 import NO_TASK from '../assets/no_task.json';
+
 const Tasks = () => {
   const { user } = useAuth();
   const [tasks, setTasks] = useState([]);
@@ -38,13 +39,13 @@ const Tasks = () => {
       setLoading(false);
     }
   };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   useEffect(() => {
     if (user) fetchTasks();
   }, [user]);
 
   const handleSubmitSuccess = () => {
-    fetchTasks(); // Refresh after submission
+    fetchTasks();
   };
 
   return (
@@ -61,16 +62,7 @@ const Tasks = () => {
       ) : (
         <ul style={{ listStyle: 'none', padding: 0 }}>
           {tasks.map((task) => (
-            <li
-              key={task.id}
-              style={{
-                marginBottom: '1rem',
-                border: '1px solid #ccc',
-                padding: '1rem',
-                borderRadius: '8px',
-                backgroundColor: task.rejectionMessage ? '#ffe6e6' : '#f9f9f9'
-              }}
-            >
+            <li key={task.id} style={{marginBottom: '10px',border: '1px solid #ccc',padding: '10px',borderRadius: '8px',backgroundColor: task.rejectionMessage ? '#ffe6e6' : '#f9f9f9'}}>
               <p style={{marginBottom:'10px'}}><strong>Task:</strong> {task.title}</p>
               <p><strong>Assigned By:</strong> {task.assignedByName}</p>
 
@@ -92,21 +84,13 @@ const Tasks = () => {
               ) : (
                 <button
                   onClick={() => setSelectedTask(task)}
-                  style={{
-                    marginTop:'10px',
-                    padding: '5px 20px',
-                    background: 'rgb(0, 0, 0,0.8)',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '5px',
-                    cursor: 'pointer'
-                  }}
-                >
-                  View
+                  style={{marginTop:'10px',padding: '5px 20px',background: 'rgb(0, 0, 0,0.8)',color: 'white',border: 'none',borderRadius: '5px',cursor: 'pointer'}}>View
                 </button>
               )}
+
             </li>
           ))}
+          
         </ul>
       )}
 
