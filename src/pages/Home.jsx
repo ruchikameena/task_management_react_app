@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <div className="home_main">
       <h2 className='home_main_h2'>👋 Welcome to the Dashboard!</h2>
-      <p className='home_main_p'>Select a section from the sidebar to get started. 😎</p>
+      <p>Select a section from the sidebar to get started. 😎</p>
       <div className='home_main_div'>
         <div className='home_main_left'>
           <div className='home_main_left_sub' style={{borderTop:'4px solid black',borderLeft:'4px solid black'}}>

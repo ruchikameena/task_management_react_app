@@ -114,7 +114,7 @@ const Profile = () => {
         ))}
 
         {monthDays.map((dateObj) => {
-          const dateStr = dateObj.toISOString().split('T')[0];
+          const dateStr = dateObj.toLocaleDateString('en-CA');
           const loggedIn = loginHistory.includes(dateStr);
           const isToday = dateStr === todayDateString;
 

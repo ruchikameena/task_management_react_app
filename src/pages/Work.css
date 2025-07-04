@@ -1,0 +1,47 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.work_main{
+    padding: 10px;
+}
+
+.work_filter{
+    margin-right: 20px;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-radius: 10px;
+    transition: all ease 0.3s;
+}
+
+.work_sort{
+    padding: 5px 10px;
+    border: none;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-radius: 10px;
+    transition: all ease 0.3s;
+}
+
+.work_sort_option{
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.work_filter:hover,.work_sort:hover {
+    box-shadow: 5px 5px 10px black;
+}
+
+.line_breaker{
+    display: none;
+}
+
+@media screen and (max-width: 500px){
+    .line_breaker{
+        display: block;
+    }
+}

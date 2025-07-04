@@ -96,7 +96,7 @@ const Board = () => {
           >
             <h3 style={{marginBottom:'2px'}}>{columnNames[colKey]}</h3>
             {columns[colKey].length === 0 ? (
-              <p>No tasks</p>
+              <p style={{marginTop:'10px'}}>No tasks</p>
             ) : (
               columns[colKey].map((task) => (
                 <TaskCard key={task.id} task={task} onEdit={setEditTask} />

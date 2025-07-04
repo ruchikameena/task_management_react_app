@@ -3,7 +3,9 @@ import { useAuth } from '../context/authContext';
 import { db } from '../firebase/config';
 import { collection, query, where, getDocs, doc, getDoc } from 'firebase/firestore';
 import RejectTaskModal from '../components/RejectTask';
-
+import './Work.css';
+import Lottie from 'lottie-react';
+import NO_TASK from '../assets/no_task.json';
 const Work = () => {
   const { user } = useAuth();
   const [submittedTasks, setSubmittedTasks] = useState([]);
@@ -83,29 +85,33 @@ const Work = () => {
   });
 
   return (
-    <div>
-      <h2>📄 Work Submitted To Me</h2>
+    <div className='work_main'>
+      <h2 style={{marginBottom:'10px'}}>📄 Work Submitted To Me</h2>
 
       {/* 🔍 Filter and Sort Controls */}
-      <div style={{ marginBottom: '1rem' }}>
+      <div style={{ marginBottom: '20px' }}>
         <label><strong>Filter by Date:</strong>{' '}</label>
         <input
           type="date"
+          className='work_filter'
           value={filterDate}
           onChange={(e) => setFilterDate(e.target.value)}
         />
-
-        <label style={{ marginLeft: '1rem' }}><strong>Sort by:</strong>{' '}</label>
-        <select value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
-          <option value="fastest">Fastest First</option>
-          <option value="slowest">Slowest First</option>
+        <br className='line_breaker'/>
+        <label><strong>Sort by:</strong>{' '}</label>
+        <select value={sortOption} onChange={(e) => setSortOption(e.target.value)} className='work_sort'>
+          <option className='work_sort_option' value="fastest">Early submissions</option >
+          <option className='work_sort_option' value="slowest">Late submissions</option>
         </select>
       </div>
 
       {loading ? (
         <p>Loading...</p>
       ) : sortedTasks.length === 0 ? (
-        <p>No submitted tasks yet.</p>
+        <div className="task_animation">
+          <Lottie animationData={NO_TASK} loop={true} className='No_tasks' />
+          <h2>No Submissions yet....!</h2>
+        </div>
       ) : (
         <ul style={{ listStyle: 'none', padding: 0 }}>
           {sortedTasks.map((task) => (
@@ -119,13 +125,12 @@ const Work = () => {
                 backgroundColor: '#f9f9f9'
               }}
             >
-              <p><strong>Task:</strong> {task.title}</p>
+              <p style={{marginBottom:'10px'}}><strong>Task:</strong> {task.title}</p>
               <p><strong>Submitted By:</strong> {task.assignedToName}</p>
               <p>
                 <strong>Submission Link:</strong>{' '}
                 <a href={task.submissionLink} target="_blank" rel="noreferrer">
-                  View Submission 🔗
-                </a>
+                  View submission🔗</a>
               </p>
               {task.submittedAt && (
                 <p>
@@ -135,8 +140,8 @@ const Work = () => {
               )}
               <button
                 style={{
-                  marginTop: '0.5rem',
-                  background: '#e53935',
+                  marginTop: '10px',
+                  background: 'rgb(0, 0, 0,0.8)',
                   color: 'white',
                   border: 'none',
                   padding: '0.4rem 0.8rem',

@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from '../context/authContext';
 import { db } from '../firebase/config';
 import { collection, query, where, getDocs, doc, getDoc } from 'firebase/firestore';
+import Lottie from 'lottie-react';
 import TaskDetailModel from '../components/TaskDetail';
-
+import './Tasks.css';
+import NO_TASK from '../assets/no_task.json';
 const Tasks = () => {
   const { user } = useAuth();
   const [tasks, setTasks] = useState([]);
@@ -46,13 +48,16 @@ const Tasks = () => {
   };
 
   return (
-    <div>
-      <h2>📋 My Tasks</h2>
+    <div className='tasks_main'>
+      <h2 style={{marginBottom:'10px'}}>📋 My Tasks</h2>
 
       {loading ? (
         <p>Loading...</p>
       ) : tasks.length === 0 ? (
-        <p>No tasks assigned to you yet.</p>
+        <div className="task_animation">
+          <Lottie animationData={NO_TASK} loop={true} className='No_tasks' />
+          <h2>No Task Assigned To You....!</h2>
+        </div>
       ) : (
         <ul style={{ listStyle: 'none', padding: 0 }}>
           {tasks.map((task) => (
@@ -66,7 +71,7 @@ const Tasks = () => {
                 backgroundColor: task.rejectionMessage ? '#ffe6e6' : '#f9f9f9'
               }}
             >
-              <p><strong>Task:</strong> {task.title}</p>
+              <p style={{marginBottom:'10px'}}><strong>Task:</strong> {task.title}</p>
               <p><strong>Assigned By:</strong> {task.assignedByName}</p>
 
               {task.rejectionMessage && (
@@ -88,8 +93,9 @@ const Tasks = () => {
                 <button
                   onClick={() => setSelectedTask(task)}
                   style={{
-                    padding: '0.4rem 1rem',
-                    background: '#1976d2',
+                    marginTop:'10px',
+                    padding: '5px 20px',
+                    background: 'rgb(0, 0, 0,0.8)',
                     color: 'white',
                     border: 'none',
                     borderRadius: '5px',

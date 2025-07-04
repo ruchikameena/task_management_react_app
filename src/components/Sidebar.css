@@ -77,13 +77,13 @@
         gap: 20px;
     }
     .sidebar_main_li{
-        padding: 15px;
+        padding: 10px 20px;
         background-color: transparent;
         border: none;
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 550px) {
   .sidebar_ul {
     display: none;
   }

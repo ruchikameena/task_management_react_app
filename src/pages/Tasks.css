@@ -1,0 +1,12 @@
+.tasks_main{
+    padding: 10px;
+}
+
+.task_animation{
+    text-align: center;
+}
+
+.No_tasks{
+    width: 100%;
+    height: 50vh;
+}
