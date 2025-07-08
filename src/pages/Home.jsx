@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <div className="home_main">
       <h2 className='home_main_h2'>👋 Welcome to the Dashboard!</h2>
-      <p>Select a section from the sidebar to get started. 😎</p>
+      <p>Click/Hover over the respective section to know more</p>
       <div className='home_main_div'>
 
         <div className='home_main_left'>
