@@ -106,13 +106,13 @@ const Work = () => {
       ) : (
         <ul style={{ listStyle: 'none', padding: 0 }}>
           {sortedTasks.map((task) => (
-            <li key={task.id} style={{ marginBottom: '10px',padding: '10px',border: '1px solid #ccc',borderRadius: '8px',backgroundColor: '#f9f9f9'}}>
+            <li key={task.id} style={{ marginBottom: '10px',padding: '10px',border: '1px solid #ccc',borderRadius: '8px',backgroundColor: '#f9f9f9'}} className='work_task_card'>
               <p style={{marginBottom:'10px'}}><strong>Task:</strong> {task.title}</p>
               <p><strong>Submitted By:</strong> {task.assignedToName}</p>
-              <p>
+              <p style={{wordWrap:'break-word',overflow:'break-word',whiteSpace:'normal',maxWidth:'100%',overflow:'hidden'}}>
                 <strong>Submission Link:</strong>{' '}
                 <a href={task.submissionLink} target="_blank" rel="noreferrer">
-                  View submission🔗</a>
+                  {task.submissionLink}</a>
               </p>
               {task.submittedAt && (
                 <p>

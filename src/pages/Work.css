@@ -40,6 +40,35 @@
     display: none;
 }
 
+.work_task_card{
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+@media screen and (max-width: 2400px){
+
+    .work_task_card{
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .work_task_card p{
+        font-size: 14px;
+    }
+
+    .work_task_card a{
+        font-size: 14px;
+        display: inline-block;
+        word-break: break-all;
+    }
+}
+
 @media screen and (max-width: 500px){
     .line_breaker{
         display: block;

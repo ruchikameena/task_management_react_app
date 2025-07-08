@@ -9,7 +9,7 @@ const Sidebar = () => {
 
   return (
     <div className='sidebar_main'>
-      <h1 style={{ textAlign: 'center', color: 'black',padding:'15px'}}>Kanban</h1>
+      <h1 style={{ textAlign: 'center', color: 'black',padding:'15px'}}><NavLink to="/dashboard" style={{textDecoration:'none',color:'black',textShadow:'2px 2px 4px white'}}>Kanban</NavLink></h1>
       <div className="sidebar_ul">
         <ul className='sidebar_main_ul'>
           <li className='sidebar_main_li'><NavLink className='sidebar_main_navlink' to="/dashboard/profile">Profile</NavLink></li>

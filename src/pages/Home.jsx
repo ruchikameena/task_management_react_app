@@ -16,7 +16,7 @@ const Home = () => {
           <div className='home_main_left_sub' style={{ borderTop: '4px solid black', borderLeft: '4px solid black' }}>
             <video src={profileVideo} autoPlay loop muted playsInline className='home_video'></video>
             <div className="video_feature">
-              <h2 style={{ marginBottom: '10px', color: '#02c37e' }}>Profile</h2>
+              <h2 style={{ marginBottom: '10px', color: '#02c37e' }}>👤 Profile</h2>
               <ul>
                 <li style={{ listStyle: 'none' }}>Users are able to see their personal information</li>
                 <li style={{ listStyle: 'none', color: '#02c37e' }}>Streak tracker is present for consistency</li>
@@ -28,7 +28,7 @@ const Home = () => {
           <div className='home_main_right_sub' style={{ borderBottom: '4px solid black', borderLeft: '4px solid black' }}>
             <video src={boardVideo} autoPlay loop muted playsInline className='home_video'></video>
             <div className="video_feature">
-              <h2 style={{ marginBottom: '10px', color: '#02c37e' }}>Board</h2>
+              <h2 style={{ marginBottom: '10px', color: '#02c37e' }}>🔲 Board</h2>
               <ul>
                 <li style={{ listStyle: 'none' }}>User can create the new tasks</li>
                 <li style={{ listStyle: 'none', color: '#02c37e' }}>Tasks are automatically arranged in the respective columns</li>
@@ -49,7 +49,7 @@ const Home = () => {
           <div className='home_main_left_sub' style={{ borderTop: '4px solid black', borderRight: '4px solid black' }}>
             <video src={tasksVideo} autoPlay loop muted playsInline className='home_video'></video>
             <div className="video_feature">
-              <h2 style={{ marginBottom: '10px', color: '#02c37e' }}>Tasks</h2>
+              <h2 style={{ marginBottom: '10px', color: '#02c37e' }}>📋 Tasks</h2>
               <ul>
                 <li style={{ listStyle: 'none' }}>User are able to see tasks assigned to them</li>
                 <li style={{ listStyle: 'none', color: '#02c37e' }}>Each tasks have description, due date, submission link to attach</li>
@@ -63,7 +63,7 @@ const Home = () => {
           <div className='home_main_right_sub' style={{ borderBottom: '4px solid black', borderRight: '4px solid black' }}>
             <video src={workVideo} autoPlay loop muted playsInline className='home_video'></video>
             <div className="video_feature">
-              <h2 style={{ marginBottom: '10px', color: '#02c37e' }}>Work</h2>
+              <h2 style={{ marginBottom: '10px', color: '#02c37e' }}>📄 Work</h2>
               <ul>
                 <li style={{ listStyle: 'none' }}>User are able to see the submitted task assigned by them</li>
                 <li style={{ listStyle: 'none', color: '#02c37e' }}>They can reject and reassign the task, set new due date</li>
