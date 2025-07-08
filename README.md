@@ -2,6 +2,11 @@
 
 A Kanban Task Management web application built using **React (Create React App)** and **Firebase**. It allows admins to assign tasks, users to submit them via links, and handles task tracking and status updates.
 
+- **Internship Project**:-
+- Developed during the **2 month virtual Internship** (i.e. Celebal Summer Internship) with **Celebal Technologies**
+- Duration : 19 May 2025 - 20 July 2025
+- Mentors : **Prakhar Mathur** Sir and **Pankaj Bamania** Sir 
+
 ## ✨ Features
 
 - 🔐 Firebase Authentication (Email/Password) with email verification and forgot password
