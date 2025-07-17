@@ -16,7 +16,7 @@ A Kanban Task Management web application built using **React (Create React App)*
 - 🔎 Filter & sort submissions by date or submission-rate
 - 📦 Responsive UI for all type of devices
 - 🔥 Hosted on [Vercel](http://task-management-react-app-omega.vercel.app/), use this link to access the application.
-- *🚨 IMPORTANT: CHECK YOUR SPAM FOLDER IF YOU DIDN'T RECEIVE IT...!*
+- *🚨 IMPORTANT: CHECK YOUR SPAM FOLDER IF YOU DIDN'T RECEIVE THE MAIL...!*
 
 ## 🔧 Tech Stack
 
@@ -59,4 +59,4 @@ Create these variable in that file :-
 - REACT_APP_FIREBASE_APP_ID=...
 
 - 🔍 To view the application - http://task-management-react-app-omega.vercel.app/
-- *🚨 IMPORTANT: CHECK YOUR SPAM FOLDER IF YOU DIDN'T RECEIVE IT...!*
+- *🚨 IMPORTANT: CHECK YOUR SPAM FOLDER IF YOU DIDN'T RECEIVE THE MAIL...!*
